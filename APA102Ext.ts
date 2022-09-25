@@ -260,7 +260,6 @@ namespace APA102 {
         //% blockId="APA102_each_brightness" block="%strip|ease brightness"
         //% weight=58  blockGap=8 advanced=true
         easeBrightness(): void {
-            this.setBrightness(1);
             const stride = 3
             const br = this.brightness;
             const buf = this.buf;
@@ -470,7 +469,7 @@ namespace APA102 {
 
         h = h % 360;
         s = Math.clamp(0, 99, s);
-        l = Math.clamp(0, 31, l);
+        l = Math.clamp(0, 99, l);
         let c = Math.idiv((((100 - Math.abs(2 * l - 100)) * s) << 8), 10000); //chroma, [0,255]
         let h1 = Math.idiv(h, 60);//[0,6]
         let h2 = Math.idiv((h - h1 * 60) * 256, 60);//[0,255]
