@@ -83,7 +83,7 @@ namespace APA102 {
         //% strip eg: neoStrip
         //% weight=98 blockGap=8
         showHSL(hue: number) {
-            let rgb = toCol(hue, 100, 36);
+            let rgb = toCol(hue, 100, 31);
             this.setAllRGB(rgb);
             this.show();
         }
@@ -103,7 +103,7 @@ namespace APA102 {
             startHue = startHue >> 0;
             endHue = endHue >> 0;
             const saturation = 100;
-            const luminance = 50;
+            const luminance = 31;
             const steps = this._length;
             const direction = HueInterpolationDirection.Clockwise;
 
@@ -164,7 +164,7 @@ namespace APA102 {
         showBarGraph(value: number, high: number): void {
             if (high <= 0) {
                 this.clear();
-                this.setPixelColor(0, PixelColors.Yellow);
+                this.setPixelColor(0, PixelColors.Blue);
                 this.show();
                 return;
             }
@@ -261,6 +261,22 @@ namespace APA102 {
         //% weight=58  blockGap=8 advanced=true
         easeBrightness(): void {
             this.setBrightness(1);
+            const stride = 3
+            const br = this.brightness;
+            const buf = this.buf;
+            const end = this.start + this._length;
+            const mid = Math.idiv(this._length, 2);
+            for (let i = this.start; i < end; ++i) {
+                const k = i - this.start;
+                const ledoffset = i * stride;
+                const br = k > mid
+                    ? Math.idiv(255 * (this._length - 1 - k) * (this._length - 1 - k), (mid * mid))
+                    : Math.idiv(255 * k * k, (mid * mid));
+                const r = (buf[ledoffset + 0] * br) >> 8; buf[ledoffset + 0] = r;
+                const g = (buf[ledoffset + 1] * br) >> 8; buf[ledoffset + 1] = g;
+                const b = (buf[ledoffset + 2] * br) >> 8; buf[ledoffset + 2] = b;
+                
+            }
         }
 
         /** 
@@ -279,6 +295,7 @@ namespace APA102 {
             strip._length = Math.clamp(0, this._length - (strip.start - this.start), length);
             return strip;
         }
+        
 
         /**
          * Shift LEDs forward and clear with zeros.
@@ -413,7 +430,7 @@ namespace APA102 {
         constructor(h: number, s: number, l: number) {
             this.h = h % 360;
             this.s = Math.clamp(0, 99, s);
-            this.l = Math.clamp(0, 99, l);
+            this.l = Math.clamp(0, 31, l);
         }
 
         /**
@@ -443,7 +460,7 @@ namespace APA102 {
          * Converts a hue saturation luminosity value into a RGB color
          * @param h hue from 0 to 360
          * @param s saturation from 0 to 99
-         * @param l luminosity from 0 to 99
+         * @param l luminosity from 0 to 31
          */
     //% blockId=toCol block="hue %h|saturation %s|luminosity %l"
     export function toCol(h: number, s: number, l: number): number {
@@ -453,7 +470,7 @@ namespace APA102 {
 
         h = h % 360;
         s = Math.clamp(0, 99, s);
-        l = Math.clamp(0, 99, l);
+        l = Math.clamp(0, 31, l);
         let c = Math.idiv((((100 - Math.abs(2 * l - 100)) * s) << 8), 10000); //chroma, [0,255]
         let h1 = Math.idiv(h, 60);//[0,6]
         let h2 = Math.idiv((h - h1 * 60) * 256, 60);//[0,255]
