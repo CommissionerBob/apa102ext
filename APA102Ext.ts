@@ -286,6 +286,8 @@ namespace APA102 {
         //% blockId="APA102_range" block="%strip|range from %start|with %length|leds"
         //% weight=95 blockGap=8 advanced=true
         range(start: number, length: number): Strip {
+            start = start >> 0;
+            length = length >> 0;
             let strip = new Strip();
             strip.buf = this.buf;
             strip.brightness = this.brightness;
