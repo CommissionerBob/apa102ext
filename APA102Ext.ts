@@ -284,6 +284,9 @@ namespace APA102 {
          * @param length number of LEDs in the range. eg: 4
          */
         //% blockId="APA102_range" block="%strip|range from %start|with %length|leds"
+        //% strip.defl=strip
+        //% parts="APA102"
+        //% blockSetVariable=range
         //% weight=95 blockGap=8 advanced=true
         range(start: number, length: number): Strip {
             start = start >> 0;
