@@ -45,7 +45,7 @@ enum PixelMode {
  * Functions to operate APA102 strips.
  */
 //% weight=5 color=#619300 icon="\uf110"
-namespace APA102 {
+namespace apa102 {
     let MAX_BRIGHTNESS = 31 // Safeguard: Set to a value appropriate for your setup
     let LED_START = 0b11100000 // Three "1" bits, followed by 5 brightness bits
     let RGB_MAP = [
@@ -181,7 +181,7 @@ namespace APA102 {
                 for (let i = 0; i < n; ++i) {
                     if (i <= v) {
                         let b = Math.idiv( i * 255 , n1);
-                        this.setPixelColor(i, APA102.rgb(b, 0, 255 - b));
+                        this.setPixelColor(i, apa102.rgb(b, 0, 255 - b));
                     }
                     else this.setPixelColor(i, 0);
                 }
@@ -294,10 +294,8 @@ namespace APA102 {
             let newstrip = new Strip();
             newstrip.buf = this.buf;
             newstrip.brightness = this.brightness;
-            
             newstrip.start = this.start + Math.clamp(0, this._length - 1, start);
             newstrip._length = Math.clamp(0, this._length - (newstrip.start - this.start), length);
-            
             return newstrip;
         }
         
