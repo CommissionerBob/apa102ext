@@ -285,7 +285,7 @@ namespace apa102 {
          */
         //% blockId="APA102_range" block="%strip|range from %start|with %length|leds"
         
-        //% parts="APA102"
+        //% parts="apa102"
         //% blockSetVariable=range
         //% weight=95 blockGap=8 advanced=true
         range(start: number, length: number): Strip {
