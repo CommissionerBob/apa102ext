@@ -288,13 +288,14 @@ namespace APA102 {
         range(start: number, length: number): Strip {
             start = start >> 0;
             length = length >> 0;
-            let strip = new Strip();
-            strip.buf = this.buf;
-            strip.brightness = this.brightness;
-            strip.setBrightness(strip.brightness)
-            strip.start = this.start + Math.clamp(0, this._length - 1, start);
-            strip._length = Math.clamp(0, this._length - (strip.start - this.start), length);
-            return strip;
+            let newstrip = new Strip();
+            newstrip.buf = this.buf;
+            newstrip.brightness = this.brightness;
+            
+            newstrip.start = this.start + Math.clamp(0, this._length - 1, start);
+            newstrip._length = Math.clamp(0, this._length - (newstrip.start - this.start), length);
+            
+            return newstrip;
         }
         
 
