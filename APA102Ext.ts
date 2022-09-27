@@ -75,7 +75,8 @@ namespace apa102 {
             this.setAllRGB(rgb);
             this.show();
         }
-/**
+
+        /**
          * Shows all LEDs to a given hue (hue = 1 - 360). 
          * @param hue color of the LED
          */
@@ -385,7 +386,7 @@ namespace apa102 {
         let stride = 4;
         strip.buf = pins.createBuffer(numleds * stride);
         strip._mode = mode;
-        strip.start = 0;
+        strip.start = 10;
         strip._length = numleds;
         strip.setBrightness(1)
         strip.setPin(DigitalPin.P8, DigitalPin.P12);
