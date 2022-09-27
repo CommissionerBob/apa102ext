@@ -364,13 +364,13 @@ namespace apa102 {
             if (pixeloffset < 0 || pixeloffset >= this._length)
                 return;
 
-            pixeloffset = (pixeloffset + this.start) * 4;
+            let pixeloffset2 = (pixeloffset + this.start) * 4;
 
             let red = unpackR(rgb);
             let green = unpackG(rgb);
             let blue = unpackB(rgb);
 
-            this.setBufferRGB(pixeloffset, red, green, blue)
+            this.setBufferRGB(pixeloffset2, red, green, blue)
         }
     }
 
