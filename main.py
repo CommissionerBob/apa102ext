@@ -1,1 +1,8 @@
-
+strip = apa102.create_strip(60, PixelMode.RGB)
+range2 = strip.range(4, 20)
+strip.set_pin(DigitalPin.P1, DigitalPin.P0)
+strip.clear()
+strip.show()
+range2.show_color(apa102.colors(PixelColors.CYAN))
+range2.shift(1)
+range2.show()

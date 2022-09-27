@@ -1,1 +1,8 @@
-
+let strip = apa102.createStrip(60, PixelMode.RGB)
+let range2 = strip.range(4, 20)
+strip.setPin(DigitalPin.P1, DigitalPin.P0)
+strip.clear()
+strip.show()
+range2.showColor(apa102.colors(PixelColors.Cyan))
+range2.shift(1)
+range2.show()

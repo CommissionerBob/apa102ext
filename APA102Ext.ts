@@ -340,7 +340,7 @@ namespace apa102 {
         //% weight=99 blockGap=8 
         setPin(sdi: DigitalPin, cki: DigitalPin): void {
             pins.spiPins(sdi, 0, cki);
-            pins.spiFormat(8, 3);
+            pins.spiFormat(8, 0);
             pins.spiFrequency(1000000);
         }
 
@@ -386,7 +386,7 @@ namespace apa102 {
         let stride = 4;
         strip.buf = pins.createBuffer(numleds * stride);
         strip._mode = mode;
-        strip.start = 10;
+        strip.start = 0;
         strip._length = numleds;
         strip.setBrightness(1)
         strip.setPin(DigitalPin.P8, DigitalPin.P12);
