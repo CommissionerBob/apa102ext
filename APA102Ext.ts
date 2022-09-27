@@ -295,13 +295,13 @@ namespace apa102 {
         //% parts="apa102"
         //% blockSetVariable=range
         //% weight=95 blockGap=8 advanced=true
-        range(start: number, length: number): Strip {
-            start = start >> 0;
+        range(start2: number, length: number): Strip {
+            start2 = start2 >> 0;
             length = length >> 0;
             let newstrip = new Strip();
             newstrip.buf = this.buf;
             newstrip.brightness = this.brightness;
-            newstrip.start = this.start + Math.clamp(0, this._length - 1, start);
+            newstrip.start = this.start + Math.clamp(0, this._length - 1, start2);
             newstrip._length = Math.clamp(0, this._length - (newstrip.start - this.start), length);
             return newstrip;
         }
