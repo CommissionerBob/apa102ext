@@ -240,7 +240,14 @@ namespace apa102 {
         length() {
             return this._length;
         }
-
+        /**
+        * Gets the start number the strip
+        */
+        //% blockId="APA102_startNum" block="%strip|startNum"
+        //% weight=60  blockGap=8 advanced=true
+        startNum() {
+            return this.start;
+        }
         /**
          * Set the brightness of the strip. This flag only applies to future operation.
          * @param brightness a measure of LED brightness in 0-31. eg: 31
@@ -354,8 +361,7 @@ namespace apa102 {
         }
 
         private setPixelRGB(pixeloffset: number, rgb: number): void {
-            if (pixeloffset < 0
-                || pixeloffset >= this._length)
+            if (pixeloffset < 0 || pixeloffset >= this._length)
                 return;
 
             pixeloffset = (pixeloffset + this.start) * 4;
