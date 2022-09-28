@@ -263,7 +263,7 @@ namespace apa102 {
         //% weight=59 blockGap=8 advanced=true
         setBrightness(brightness: number): void {
             this.brightness = brightness & 0b00011111;
-            for (let i = this.start; i < this._length - this.start; i++) {
+            for (let i = this.start; i < this._length + this.start; i++) {
                 this.buf[i * 4] = (this.brightness & 0b00011111) | LED_START;
             }
         }
