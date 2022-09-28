@@ -211,9 +211,15 @@ namespace apa102 {
             for (let i = 0; i < 4; i++) {
                 pins.spiWrite(0);
             }
-            for (let i = this.start * 4; i < (this._length + this.start) * 4; i++) {
+            /**for (let i = this.start * 4; i < (this._length + this.start) * 4; i++) {
                 pins.spiWrite(this.buf[i]);
             }
+            */
+
+            for (let i = 0; i < (this._length + this.start) * 4; i++) {
+                pins.spiWrite(this.buf[i]);
+            }
+
             for (let i = 0; i < (this._length + 15) / 16; i++) {
                 pins.spiWrite(0);
             }
@@ -226,7 +232,7 @@ namespace apa102 {
         //% blockId="APA102_clear" block="%strip|clear"
         //% weight=76 blockGap=8
         clear(): void {
-            for (let i = this.start; i < this._length; i++) {
+            for (let i = 0; i < this.start + this._length; i++) {
                 this.buf[i * 4 + 1] = 0;
                 this.buf[i * 4 + 2] = 0;
                 this.buf[i * 4 + 3] = 0;
@@ -340,7 +346,7 @@ namespace apa102 {
         //% weight=99 blockGap=8 
         setPin(sdi: DigitalPin, cki: DigitalPin): void {
             pins.spiPins(sdi, 0, cki);
-            pins.spiFormat(8, 0);
+            pins.spiFormat(8, 3);
             pins.spiFrequency(1000000);
         }
 
@@ -354,7 +360,9 @@ namespace apa102 {
             let red = unpackR(rgb);
             let green = unpackG(rgb);
             let blue = unpackB(rgb);
-
+            for (let i = 0; i < this.start; ++i) {
+                this.setBufferRGB(i * 4, 0,0,0)
+            }
             const end = this.start + this._length;
             for (let i = this.start; i < end; ++i) {
                 this.setBufferRGB(i * 4, red, green, blue)
