@@ -353,12 +353,6 @@ namespace apa102 {
             for (let i = this.start; i < end; ++i) {
                 this.setBufferRGB(i * 4, red, green, blue)
             }
-            if (end < this._maxEnd) {
-            for (let i = end; i ,this._maxEnd; ++i) {
-                this.setBufferRGB(i * 4, 0, 0, 0)
-            }
-            }
-            
         }
 
         private setPixelRGB(pixeloffset: number, rgb: number): void {
@@ -388,7 +382,7 @@ namespace apa102 {
         strip._mode = mode;
         strip.start = 0;
         strip._length = numleds;
-        strip._maxEnd = numleds;
+        
         strip.setBrightness(1)
         strip.setPin(DigitalPin.P8, DigitalPin.P12);
         return strip;
