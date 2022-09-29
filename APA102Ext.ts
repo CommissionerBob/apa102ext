@@ -399,9 +399,9 @@ namespace apa102 {
     }
     /**
      * provides hue, saturaion and lumin channels
-     * @param hue value between 0 and 360. eg: 255
-     * @param saturation value between 0 and 99. eg: 50
-     * @param luminence value between 0 and 31. eg: 20
+     * @param hue value between 0 and 360. eg: 180
+     * @param sat value between 0 and 99. eg: 50
+     * @param lum value between 0 and 31. eg: 20
      */
     //% blockId="APA102_hsl" block="Hue %hue|Sat %sat|Lum %lum"
     //% weight=2 blockGap=8
