@@ -397,6 +397,17 @@ namespace apa102 {
     export function rgb(red: number, green: number, blue: number): number {
         return packRGB(red, green, blue);
     }
+    /**
+     * provides hue, saturaion and lumin channels
+     * @param hue value between 0 and 360. eg: 255
+     * @param saturation value between 0 and 99. eg: 50
+     * @param luminence value between 0 and 31. eg: 20
+     */
+    //% blockId="APA102_hsl" block="Hue %hue|Sat %sat|Lum %lum"
+    //% weight=2 blockGap=8
+    export function hsl(hue: number, sat: number, lum: number): HSL {
+        return new HSL(hue, sat, lum);
+    }
 
     /**
      * Gets the RGB value of a known color
@@ -466,7 +477,7 @@ namespace apa102 {
          * @param l luminosity from 0 to 31
          */
     //% blockId=toCol block="hue %h|saturation %s|luminosity %l"
-    export function toCol(h: number, s: number, l: number): number {
+    function toCol(h: number, s: number, l: number): number {
         h = Math.round(h);
         s = Math.round(s);
         l = Math.round(l);
