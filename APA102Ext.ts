@@ -80,11 +80,12 @@ namespace apa102 {
          * Shows all LEDs to a given hue (hue = 1 - 360). 
          * @param hue color of the LED
          */
-        //% blockId="APA102_set_strip_HSL" block="%strip|show Hue %hue"
+        //% blockId="APA102_set_strip_HSL" block="%strip|show HSL %hsl=APA102_hsl"
         //% strip eg: neoStrip
         //% weight=98 blockGap=8
-        showHSL(hue: number) {
-            let rgb = toCol(hue, 100, 31);
+        showHSL(hsl: HSL) {
+            let rgb = toCol(hsl.h, hsl.s, hsl.l);
+            this.setBrightness(hsl.l)
             this.setAllRGB(rgb);
             this.show();
         }
@@ -324,8 +325,8 @@ namespace apa102 {
 
         /**
          * Set the pin where the APA102 is connected, defaults to P8，P12.
-         * @param sdi the serial data input pin where the APA102 is connected, eg: DigitalPin.P8
-         * @param cki the serial clock input pin where the APA102 is connected, eg: DigitalPin.P12
+         * @param sdi the serial data input pin where the APA102 is connected, eg: DigitalPin.P1
+         * @param cki the serial clock input pin where the APA102 is connected, eg: DigitalPin.P0
          */
         //% blockId="APA102_setPin" block="%strip|set SDI pin %sdi|CKI pin %cki"
         //% weight=99 blockGap=8 
