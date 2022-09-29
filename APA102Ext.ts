@@ -373,6 +373,8 @@ namespace apa102 {
      * @param numleds number of leds in the strip, eg: 4
      */
     //% blockId="APA102_createStrip" block="APA102 strip with %numleds| leds as %mode"
+    //% parts="apa102"
+    //% blockSetVariable=strip
     //% weight=100 blockGap=8
     export function createStrip(numleds: number, mode: PixelMode): Strip {
         let strip = new Strip();
