@@ -269,27 +269,12 @@ namespace apa102 {
         }
 
         /**
-         * Apply brightness to current colors using a quadratic easing function.
+         * Apply brightness to current colors possible future operation.
          **/
         //% blockId="APA102_each_brightness" block="%strip|ease brightness"
         //% weight=58  blockGap=8 advanced=true
         easeBrightness(): void {
-            const stride = 3
-            const br = this.brightness;
-            const buf = this.buf;
-            const end = this.start + this._length;
-            const mid = Math.idiv(this._length, 2);
-            for (let i = this.start; i < end; ++i) {
-                const k = i - this.start;
-                const ledoffset = i * stride;
-                const br = k > mid
-                    ? Math.idiv(255 * (this._length - 1 - k) * (this._length - 1 - k), (mid * mid))
-                    : Math.idiv(255 * k * k, (mid * mid));
-                const r = (buf[ledoffset + 0] * br) >> 8; buf[ledoffset + 0] = r;
-                const g = (buf[ledoffset + 1] * br) >> 8; buf[ledoffset + 1] = g;
-                const b = (buf[ledoffset + 2] * br) >> 8; buf[ledoffset + 2] = b;
-                
-            }
+            this.setBrightness(1);
         }
 
         /** 
